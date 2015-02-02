@@ -6,13 +6,13 @@
 /*   By: mbryan <mbryan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/02 11:01:33 by mbryan            #+#    #+#             */
-/*   Updated: 2015/02/02 15:13:10 by mbryan           ###   ########.fr       */
+/*   Updated: 2015/02/02 15:24:43 by mbryan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int 	key_hook(int keycode, t_e *e)
+int		key_hook(int keycode, t_e *e)
 {
 	(void)e;
 	ft_putstr("Key :");
@@ -25,14 +25,16 @@ int 	key_hook(int keycode, t_e *e)
 
 void	window(void)
 {
-	t_e     point;
+	t_e		point;
 
 	point.mlx = mlx_init();
 	point.win = mlx_new_window(point.mlx, 1000, 1000, "42");
 	mlx_key_hook(point.win, key_hook, &point);
-	//mlx_loop(point.mlx);
+/*
+**  mlx_loop(point.mlx);
+**  pour linstant loop en commantaire
+*/
 
-	/// pour linstant loop en commantaire
 }
 
 void	check_primary_error(int argc, char **argv, int *fd)
@@ -53,9 +55,9 @@ void	check_primary_error(int argc, char **argv, int *fd)
 
 void	takeline(int fd)
 {
-	char 	*str;
-	int 	ret;
-	
+	char	*str;
+	int		ret;
+
 	str = NULL;
 	ret = 1;
 	while (ret == 1)
@@ -68,15 +70,13 @@ void	takeline(int fd)
 		}
 		ft_putendl(str);
 	}
-
 }
 
-int main(int argc, char  **argv)
+int		main(int argc, char **argv)
 {
 	int		fd;
 
 	check_primary_error(argc, argv, &fd);
-	
 	takeline(fd);
 	window();
 	return (0);
