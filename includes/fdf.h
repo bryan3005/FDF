@@ -6,7 +6,7 @@
 /*   By: mbryan <mbryan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/02 10:59:30 by mbryan            #+#    #+#             */
-/*   Updated: 2015/02/03 14:10:40 by mbryan           ###   ########.fr       */
+/*   Updated: 2015/02/03 15:15:42 by mbryan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,10 @@ typedef	struct		s_e
 	t_get			**map;
 	int				x;
 	int				y;
+	double			zoom;
+	double 			zoom1;
+	double			decalx;
+	double			decaly;
 }					t_e;
 
 void				put_point(double x, double y, t_e point);

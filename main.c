@@ -6,22 +6,12 @@
 /*   By: mbryan <mbryan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/02 11:01:33 by mbryan            #+#    #+#             */
-/*   Updated: 2015/02/03 14:11:01 by mbryan           ###   ########.fr       */
+/*   Updated: 2015/02/03 15:15:02 by mbryan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <stdio.h>
-int		key_hook(int keycode, t_e *e)
-{
-	(void)e;
-	ft_putstr("Key :");
-	ft_putnbr(keycode);
-	ft_putchar('\n');
-	if (keycode == 65307)
-		exit(0);
-	return (0);
-}
 
 void	check_primary_error(int argc, char **argv, int *fd)
 {
@@ -44,13 +34,17 @@ t_e	put_in_tab(t_e point, char *str, int y)
 	int		x;
 	char	**line;
 
+	point.zoom = 20;
+	point.zoom1 = 1;
+	point.decalx = 500;
+	point.decaly = 500;
 	line = ft_strsizesplit(str, ' ', &x);
 	point.x = x;
 	while (x-- != 0)
 	{
 		point.map[y][x].z = ft_atoi(line[x]);
-		point.map[y][x].y = y;
-		point.map[y][x].x = x;
+		point.map[y][x].y = y * point.zoom + point.decaly - point.zoom1 * point.map[y][x].z;
+		point.map[y][x].x = x * point.zoom + point.decalx - point.zoom1 * point.map[y][x].z;
 	}
 	ft_freetabs(line);
 	return (point);
