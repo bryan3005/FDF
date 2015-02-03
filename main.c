@@ -6,7 +6,7 @@
 /*   By: mbryan <mbryan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/02 11:01:33 by mbryan            #+#    #+#             */
-/*   Updated: 2015/02/02 15:24:43 by mbryan           ###   ########.fr       */
+/*   Updated: 2015/02/03 10:45:18 by mbryan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,6 @@ int		key_hook(int keycode, t_e *e)
 	if (keycode == 65307)
 		exit(0);
 	return (0);
-}
-
-void	window(void)
-{
-	t_e		point;
-
-	point.mlx = mlx_init();
-	point.win = mlx_new_window(point.mlx, 1000, 1000, "42");
-	mlx_key_hook(point.win, key_hook, &point);
-/*
-**  mlx_loop(point.mlx);
-**  pour linstant loop en commantaire
-*/
-
 }
 
 void	check_primary_error(int argc, char **argv, int *fd)
@@ -57,6 +43,7 @@ void	takeline(int fd)
 {
 	char	*str;
 	int		ret;
+	
 
 	str = NULL;
 	ret = 1;
