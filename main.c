@@ -6,7 +6,7 @@
 /*   By: mbryan <mbryan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/02 11:01:33 by mbryan            #+#    #+#             */
-/*   Updated: 2015/02/03 12:00:56 by mbryan           ###   ########.fr       */
+/*   Updated: 2015/02/03 14:11:01 by mbryan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,34 +39,31 @@ void	check_primary_error(int argc, char **argv, int *fd)
 	}
 }
 
-t_get	**put_in_tab(t_get **get_line, char *str, int y)
+t_e	put_in_tab(t_e point, char *str, int y)
 {
 	int		x;
 	char	**line;
 
 	line = ft_strsizesplit(str, ' ', &x);
-	get_line[0][0].lenght_line = x;
+	point.x = x;
 	while (x-- != 0)
 	{
-		get_line[y][x].z = ft_atoi(line[x]);
-		get_line[y][x].y = y;
-		get_line[y][x].x = x;
-		printf("(%d ; %d ; %d) || ", get_line[y][x].x, get_line[y][x].y, get_line[y][x].z);
+		point.map[y][x].z = ft_atoi(line[x]);
+		point.map[y][x].y = y;
+		point.map[y][x].x = x;
 	}
-	printf("lenght_line: %d\n", get_line[0][0].lenght_line  );
 	ft_freetabs(line);
-	return (get_line);
+	return (point);
 }
 
-t_get	**takeline(int fd)
+t_e		takeline(int fd, t_e point)
 {
 	char	*line;
 	int		ret;
-	t_get	**get_line;
 	int 	y;
 
 	ret = 1;
-	get_line = (t_get**)malloc(100 * sizeof(t_get));
+	point.map = (t_get**)malloc(100 * sizeof(t_get));
 	y = 0;
 	while (ret == 1)
 	{
@@ -76,22 +73,25 @@ t_get	**takeline(int fd)
 			perror("get_next_line");
 			exit(EXIT_FAILURE);
 		}
-		get_line[y] = (t_get *)malloc(ft_strlen(line) * sizeof(t_get));
-		get_line = put_in_tab(get_line, line, y);
+		point.map[y] = (t_get *)malloc(ft_strlen(line) * sizeof(t_get));
+		point = put_in_tab(point, line, y);
 		y++;
-		printf("\n");
 		free(line);
 	}
-	return (get_line);
+	point.y = y;
+	return (point);
 }
 
 int		main(int argc, char **argv)
 {
 	int		fd;
-	t_get	**get_line;
+	t_get	**map;
+	t_e		point;
 
 	check_primary_error(argc, argv, &fd);
-	get_line = takeline(fd);
-	window(get_line);
+	point = takeline(fd, point);
+	window(point);
+	ft_putendl("hr");
+	(void)map;
 	return (0);
 }
