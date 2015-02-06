@@ -6,7 +6,7 @@
 /*   By: mbryan <mbryan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/02 10:59:30 by mbryan            #+#    #+#             */
-/*   Updated: 2015/02/03 15:15:42 by mbryan           ###   ########.fr       */
+/*   Updated: 2015/02/06 12:05:16 by mbryan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ void				check_primary_error(int argc, char **argv, int *fd);
 t_e					takeline(int fd, t_e point);
 void				make_point(t_e point);
 t_e					put_in_tab(t_e point, char *str, int y);
-
-
+int					check_for_empty_line(char *str);
+int 				check_for_bad_caracter(char *line);
+void				coeff_dir(t_e e);
 
 #endif

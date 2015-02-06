@@ -6,13 +6,13 @@
 #    By: mbryan <mbryan@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/02/02 11:03:59 by mbryan            #+#    #+#              #
-#    Updated: 2015/02/03 10:39:41 by mbryan           ###   ########.fr        #
+#    Updated: 2015/02/06 10:45:41 by mbryan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
 
-OBJ = main.o get_next_line.o windows.o
+OBJ = main.o get_next_line.o windows.o tool1.o
 
 PATH_INCLUDES = includes/
 

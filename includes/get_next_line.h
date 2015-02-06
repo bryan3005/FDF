@@ -6,14 +6,14 @@
 /*   By: mbryan <mbryan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/13 22:02:48 by mbryan            #+#    #+#             */
-/*   Updated: 2015/02/02 12:25:09 by mbryan           ###   ########.fr       */
+/*   Updated: 2015/02/03 16:35:30 by mbryan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #	ifndef GET_NEXT_LINE_H
 #	define GET_NEXT_LINE_H
 
-#define BUFF_SIZE 	  100
+#define BUFF_SIZE 	  100000
 #define MAX_SIZE_BUFFER 8000001
 
 #include <sys/types.h>
