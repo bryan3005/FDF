@@ -6,12 +6,21 @@
 /*   By: mbryan <mbryan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/02 11:01:33 by mbryan            #+#    #+#             */
-/*   Updated: 2015/02/06 13:49:33 by mbryan           ###   ########.fr       */
+/*   Updated: 2015/02/07 17:15:35 by mbryan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <stdio.h>
+
+t_e		initiate(t_e point)
+{
+	point.zoom = 20;
+	point.zoom1 = 0.05;
+	point.decalx = 500;
+	point.decaly = 500;
+	return (point);
+}
 
 t_e	put_in_tab(t_e point, char *str, int y)
 {
@@ -20,10 +29,7 @@ t_e	put_in_tab(t_e point, char *str, int y)
 	static int		nbcount;
 	static	int 	stat = 0;
 
-	point.zoom = 20;
-	point.zoom1 = 0.05;
-	point.decalx = 500;
-	point.decaly = 500;
+	point = initiate(point);
 	line = ft_strsizesplit(str, ' ', &x);
 	if (stat == 0)
 	{

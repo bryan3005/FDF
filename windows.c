@@ -6,7 +6,7 @@
 /*   By: mbryan <mbryan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/03 10:38:16 by mbryan            #+#    #+#             */
-/*   Updated: 2015/02/06 14:03:06 by mbryan           ###   ########.fr       */
+/*   Updated: 2015/02/07 23:37:47 by mbryan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,6 @@ void	draw(t_e e)
 	(void)x;
 	(void)y;
 	coeff_dir(e);
-	// while (y != e.y)
-	// {
-	// 	x = -1;
-	// 	while (++x != e.x)
-	// 	{
-	// 		if (e.map[y][x].z > 0)
-	// 			mlx_pixel_put(e.mlx, e.win, e.map[y][x].x, e.map[y][x].y, 0xff0000);
-	// 		else
-	// 			mlx_pixel_put(e.mlx, e.win, e.map[y][x].x, e.map[y][x].y, 0xffffff);
-	// 	}
-	// 	y++;
-	// }
 }
 
 int	expose_hook(t_e *e)
@@ -68,18 +56,14 @@ int		key_hook(int keycode, t_e *e)
 	ft_putnbr(keycode);
 	ft_putchar('\n');
 	if (keycode == 65307)
-	{
-		while (1)
-			sleep(20);
 		exit(0);
-	}
 	if (keycode == 117)	
 		*e = zoom(*e, e->zoom1 = e->zoom1 + 0.05);
 	if (keycode == 100)
 		*e = zoom(*e, e->zoom1 = e->zoom1 - 0.05);
-	if (keycode == 65451)
+	if (keycode == 65451 || keycode == 61)
 		*e = zoom(*e, e->zoom = e->zoom + 0.5);
-	if (keycode == 65453 && e->zoom > 0.5)
+	if ((keycode == 65453 || keycode == 45) && e->zoom > 0.5)
 		*e = zoom(*e, e->zoom = e->zoom - 0.5);
 	if (keycode == 65362)
 		*e = zoom(*e, e->decaly = e->decaly - 10);
@@ -89,8 +73,6 @@ int		key_hook(int keycode, t_e *e)
 		*e = zoom(*e, e->decalx = e->decalx - 10);
 	if (keycode == 65363)
 		*e = zoom(*e, e->decalx = e->decalx + 10);
-	// if (keycode == 65362)
-	// 	*
 	mlx_clear_window(e->mlx, e->win);
 	draw(*e);
 	return (0);
@@ -103,10 +85,4 @@ void	window(t_e	e)
 	mlx_expose_hook(e.win, expose_hook, &e);
 	mlx_hook(e.win, 2, 3, key_hook, &e);
 	mlx_loop(e.mlx);
-	
-/*
-**  mlx_loop(e.mlx);
-**  pour linstant loop en commantaire
-*/
-
 }
