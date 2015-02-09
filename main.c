@@ -6,7 +6,7 @@
 /*   By: mbryan <mbryan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/02 11:01:33 by mbryan            #+#    #+#             */
-/*   Updated: 2015/02/09 15:53:30 by mbryan           ###   ########.fr       */
+/*   Updated: 2015/02/09 17:07:21 by mbryan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 
 t_e		initiate(t_e point)
 {
-	point.zoom =  1000 / (point.x * 1.2); // taille de la fenetre divi par le nombre de points
+	point.zoom =  point.win_x / (point.x * 1.2); // taille de la fenetre divi par le nombre de points
 	point.zoom1 = 0.045;
-	point.decalx = 500 - point.x * 0.5 * point.zoom;
-	point.decaly = 20;
+	point.decalx = (point.win_x / 2) - point.x * 0.5 * point.zoom;
+	point.decaly = 30;
 	return (point);
 }
 
@@ -118,7 +118,7 @@ int		main(int argc, char **argv)
 	t_get	**map;
 	t_e		point;
 
-	check_primary_error(argc, argv, &fd);
+	point = check_primary_error(argc, argv, &fd, point);
 	point = takeline(fd, point);
 	window(point);
 	ft_putendl("hr");

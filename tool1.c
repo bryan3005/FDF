@@ -6,20 +6,44 @@
 /*   By: mbryan <mbryan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/06 10:41:59 by mbryan            #+#    #+#             */
-/*   Updated: 2015/02/09 16:09:20 by mbryan           ###   ########.fr       */
+/*   Updated: 2015/02/09 17:19:10 by mbryan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <stdlib.h>
 
-void	check_primary_error(int argc, char **argv, int *fd)
+t_e		init_window(char **argv, t_e point, int *fd)
+{
+	*fd = open(argv[1], O_RDWR);
+	if (ft_atoi(argv[2]) >= 100 && ft_atoi(argv[2]) <= 3000)
+		point.win_x = ft_atoi(argv[2]);
+	else if (ft_atoi(argv[2]) < 100)
+		point.win_x = 100;
+	else if (ft_atoi(argv[2]) > 3000)
+		point.win_x = 3000;
+	if (ft_atoi(argv[3]) >= 100 && ft_atoi(argv[3]) <= 3000)
+		point.win_y = ft_atoi(argv[3]);
+	else if (ft_atoi(argv[3]) < 100)
+		point.win_y = 100;
+	else if (ft_atoi(argv[3]) > 3000)
+		point.win_y = 3000;
+	return(point);
+}
+
+t_e		check_primary_error(int argc, char **argv, int *fd, t_e point)
 {
 	if (argc == 2)
+	{
 		*fd = open(argv[1], O_RDWR);
+		point.win_x = 1000;
+		point.win_y = 1000;
+	}
+	else if (argc == 4)
+		point = init_window(argv, point, fd);
 	else
 	{
-		ft_putendl("usage : ./fdf file");
+		ft_putendl("usage : ./fdf file or ./fdf file win_x win_y");
 		exit(EXIT_FAILURE);
 	}
 	if (*fd == -1)
@@ -27,6 +51,7 @@ void	check_primary_error(int argc, char **argv, int *fd)
 		perror("fdf ");
 		exit(EXIT_FAILURE);
 	}
+	return(point);
 }
 
 int		check_for_empty_line(char *str)

@@ -6,7 +6,7 @@
 /*   By: mbryan <mbryan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/03 10:38:16 by mbryan            #+#    #+#             */
-/*   Updated: 2015/02/09 13:04:49 by mbryan           ###   ########.fr       */
+/*   Updated: 2015/02/09 16:54:12 by mbryan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ void	draw(t_e e)
 		x = -1;
 		while (++x != e.x)
 		{
-			if (x != e.x - 1 && e.map[y][x].x <= 1000 && e.map[y][x].y <= 1000)
+			if (x != e.x - 1 && e.map[y][x].x <= e.win_x && e.map[y][x].y <= e.win_y)
 				draw_x(e.map[y][x], e.map[y][x + 1], e);
-			if (y != e.y - 1 && e.map[y][x].x <= 1000 && e.map[y][x].y <= 1000)
+			if (y != e.y - 1 && e.map[y][x].x <= e.win_x && e.map[y][x].y <= e.win_y)
 				draw_y(e.map[y][x], e.map[y + 1][x], e);
 		}
 		y++;
@@ -87,15 +87,20 @@ int		key_hook(int keycode, t_e *e)
 		*e = zoom(*e, e->decalx = e->decalx - 10);
 	if (keycode == 65363)
 		*e = zoom(*e, e->decalx = e->decalx + 10);
-	mlx_clear_window(e->mlx, e->win);
-	draw(*e);
+	if (keycode == 117 || keycode == 100 || keycode == 65451 || keycode == 61 || 
+		keycode == 65453 ||  keycode == 45 || keycode == 65362 || keycode == 65364 || 
+		keycode == 65361 || keycode == 65363 || keycode == 114)
+	{
+		mlx_clear_window(e->mlx, e->win);
+		draw(*e);
+	}
 	return (0);
 }
 
 void	window(t_e	e)
 {
 	e.mlx = mlx_init();
-	e.win = mlx_new_window(e.mlx, 1000, 1000, "42");
+	e.win = mlx_new_window(e.mlx, e.win_x, e.win_y, "42");
 	mlx_expose_hook(e.win, expose_hook, &e);
 	mlx_hook(e.win, 2, 3, key_hook, &e);
 	mlx_loop(e.mlx);
