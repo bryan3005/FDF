@@ -6,7 +6,7 @@
 /*   By: mbryan <mbryan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/06 10:41:59 by mbryan            #+#    #+#             */
-/*   Updated: 2015/02/09 13:01:20 by mbryan           ###   ########.fr       */
+/*   Updated: 2015/02/09 16:09:20 by mbryan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,10 +90,12 @@ void	draw_y(t_get p1, t_get p2, t_e e)
 		}
 		else
 			ret = p1.x;
-		if ((p1.z != 0 || p2.z != 0)) 
+		if ((p1.z > 0 || p2.z > 0)) 
 			mlx_pixel_put(e.mlx, e.win, ret, p1.y, 0xff0000);
-		else 
+		else if (p1.z == 0 || p2.z == 0)
 			mlx_pixel_put(e.mlx, e.win, ret, p1.y, 0xffffff);
+		else
+			mlx_pixel_put(e.mlx, e.win, ret, p1.y, 0x4595FF);
 		p1.y++;
 	}
 }
@@ -118,10 +120,12 @@ void	draw_x(t_get p1, t_get p2, t_e e)
 	while (p1.x < p2.x)
 	{
 		ret = a * p1.x + b;
-		if ((p1.z != 0 || p2.z != 0))
+		if ((p1.z > 0 || p2.z > 0))
 			mlx_pixel_put(e.mlx, e.win, p1.x, ret, 0xff0000);
-		else
+		else if (p1.z == 0 || p2.z == 0)
 			mlx_pixel_put(e.mlx, e.win, p1.x, ret, 0xffffff);
+		else
+			mlx_pixel_put(e.mlx, e.win, p1.x, ret, 0x4595FF);
 		p1.x++;
 	}
 }
