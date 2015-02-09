@@ -6,7 +6,7 @@
 /*   By: mbryan <mbryan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/03 10:38:16 by mbryan            #+#    #+#             */
-/*   Updated: 2015/02/07 23:37:47 by mbryan           ###   ########.fr       */
+/*   Updated: 2015/02/09 13:04:49 by mbryan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,18 @@ void	draw(t_e e)
 	int x;
 
 	y = 0;
-	(void)x;
-	(void)y;
-	coeff_dir(e);
+	while (y != e.y)
+	{
+		x = -1;
+		while (++x != e.x)
+		{
+			if (x != e.x - 1 && e.map[y][x].x <= 1000 && e.map[y][x].y <= 1000)
+				draw_x(e.map[y][x], e.map[y][x + 1], e);
+			if (y != e.y - 1 && e.map[y][x].x <= 1000 && e.map[y][x].y <= 1000)
+				draw_y(e.map[y][x], e.map[y + 1][x], e);
+		}
+		y++;
+	}
 }
 
 int	expose_hook(t_e *e)
@@ -57,10 +66,15 @@ int		key_hook(int keycode, t_e *e)
 	ft_putchar('\n');
 	if (keycode == 65307)
 		exit(0);
+	if (keycode == 114)
+		{
+			*e = initiate(*e);
+			*e = zoom(*e, 0);
+		}	
 	if (keycode == 117)	
-		*e = zoom(*e, e->zoom1 = e->zoom1 + 0.05);
+		*e = zoom(*e, e->zoom1 = e->zoom1 + 0.025);
 	if (keycode == 100)
-		*e = zoom(*e, e->zoom1 = e->zoom1 - 0.05);
+		*e = zoom(*e, e->zoom1 = e->zoom1 - 0.025);
 	if (keycode == 65451 || keycode == 61)
 		*e = zoom(*e, e->zoom = e->zoom + 0.5);
 	if ((keycode == 65453 || keycode == 45) && e->zoom > 0.5)

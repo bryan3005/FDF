@@ -6,7 +6,7 @@
 /*   By: mbryan <mbryan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/02 11:01:33 by mbryan            #+#    #+#             */
-/*   Updated: 2015/02/07 17:15:35 by mbryan           ###   ########.fr       */
+/*   Updated: 2015/02/09 15:53:30 by mbryan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 
 t_e		initiate(t_e point)
 {
-	point.zoom = 20;
-	point.zoom1 = 0.05;
-	point.decalx = 500;
-	point.decaly = 500;
+	point.zoom =  1000 / (point.x * 1.2); // taille de la fenetre divi par le nombre de points
+	point.zoom1 = 0.045;
+	point.decalx = 500 - point.x * 0.5 * point.zoom;
+	point.decaly = 20;
 	return (point);
 }
 
@@ -29,7 +29,6 @@ t_e	put_in_tab(t_e point, char *str, int y)
 	static int		nbcount;
 	static	int 	stat = 0;
 
-	point = initiate(point);
 	line = ft_strsizesplit(str, ' ', &x);
 	if (stat == 0)
 	{
@@ -42,6 +41,7 @@ t_e	put_in_tab(t_e point, char *str, int y)
 		exit(EXIT_FAILURE);
 	}
 	point.x = x;
+	point = initiate(point);
 	while (x-- != 0)
 	{
 		point.map[y][x].z = ft_atoi(line[x]);
@@ -61,6 +61,26 @@ void 	check_for_other_error(char *line)
 	}
 }
 
+t_get	**realloc_me(t_get **map, int length)
+{
+	t_get	**cpy;
+	int 	i;
+
+	i = 0;
+	if (length != 0)
+		cpy = map;
+	map = (t_get**) malloc((length + 2) * sizeof(t_get*));
+	while (i != length)
+	{
+		map[i] = cpy[i];
+		i++;
+	}
+	map[i + 1] = NULL;
+	if (length != 0)
+		free(cpy);
+	return (map);
+}
+
 t_e		takeline(int fd, t_e point)
 {
 	char	*line;
@@ -68,10 +88,11 @@ t_e		takeline(int fd, t_e point)
 	int 	y;
 
 	ret = 1;
-	point.map = (t_get**)malloc(1000 * sizeof(t_get));
+	//point.map = (t_get**)malloc(1000 * sizeof(t_get*));
 	y = 0;
 	while (ret == 1)
 	{
+		point.map = realloc_me(point.map, y);
 		ret = get_next_line(fd, &line);
 		if (ret == -1)
 		{

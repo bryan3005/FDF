@@ -6,7 +6,7 @@
 /*   By: mbryan <mbryan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/06 10:41:59 by mbryan            #+#    #+#             */
-/*   Updated: 2015/02/09 10:41:09 by mbryan           ###   ########.fr       */
+/*   Updated: 2015/02/09 13:01:20 by mbryan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	draw_y(t_get p1, t_get p2, t_e e)
 	else
 		a = 0;
 	b = p1.y - a * p1.x;
-	while (p1.y < p2.y && ret <= 1000)// mettre ici la taille de la fenette evite calucl inutile
+	while (p1.y < p2.y)
 	{
 		if (dx != 0)
 		{
@@ -115,7 +115,7 @@ void	draw_x(t_get p1, t_get p2, t_e e)
 	else
 		a = 0;
 	b = p1.y - a * p1.x;
-	while (p1.x < p2.x && ret <= 1000)
+	while (p1.x < p2.x)
 	{
 		ret = a * p1.x + b;
 		if ((p1.z != 0 || p2.z != 0))
@@ -123,25 +123,5 @@ void	draw_x(t_get p1, t_get p2, t_e e)
 		else
 			mlx_pixel_put(e.mlx, e.win, p1.x, ret, 0xffffff);
 		p1.x++;
-	}
-}
-
-void	coeff_dir(t_e e)
-{
-	int y;
-	int x;
-
-	y = 0;
-	while (y != e.y && e.y < 1000)
-	{
-		x = -1;
-		while (++x != e.x && e.x < 1000)
-		{
-			if (x != e.x - 1)
-				draw_x(e.map[y][x], e.map[y][x + 1], e);
-			if (y != e.y - 1)
-				draw_y(e.map[y][x], e.map[y + 1][x], e);
-		}
-		y++;
 	}
 }
