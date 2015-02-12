@@ -6,7 +6,7 @@
 /*   By: mbryan <mbryan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/02 10:59:30 by mbryan            #+#    #+#             */
-/*   Updated: 2015/02/09 16:38:42 by mbryan           ###   ########.fr       */
+/*   Updated: 2015/02/12 14:45:14 by mbryan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef	struct		s_e
 	double			decaly;
 	int				win_x;
 	int				win_y;
+	int				proj;
 }					t_e;
 
 void				put_point(double x, double y, t_e point);
@@ -55,5 +56,9 @@ void				coeff_dir(t_e e);
 t_e					initiate(t_e point);
 void				draw_x(t_get p1, t_get p2, t_e e);
 void				draw_y(t_get p1, t_get p2, t_e e);
+void				check_for_bad_length(int x);
+void				check_for_other_error(char *line);
+t_e					put_y(t_e point);
+void				check_for_gnl_error(int ret);
 
 #endif

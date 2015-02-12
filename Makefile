@@ -6,19 +6,19 @@
 #    By: mbryan <mbryan@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/02/02 11:03:59 by mbryan            #+#    #+#              #
-#    Updated: 2015/02/06 10:45:41 by mbryan           ###   ########.fr        #
+#    Updated: 2015/02/12 14:28:00 by mbryan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
 
-OBJ = main.o get_next_line.o windows.o tool1.o
+OBJ = main.o get_next_line.o windows.o tool1.o tool2.o
 
 PATH_INCLUDES = includes/
 
 INCLUDES_NAME = fdf.h get_next_line.h libft.h
 
-LIB = -L /usr/X11/lib -lmlx -lXext -lX11 -lm
+LIB = -L /usr/X11/lib -lmlx -lXext -lX11 -lm 
 
 INCLUDES = $(addprefix $(PATH_INCLUDES),$(INCLUDES_NAME))
 
