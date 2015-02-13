@@ -6,7 +6,7 @@
 /*   By: mbryan <mbryan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/02 11:01:33 by mbryan            #+#    #+#             */
-/*   Updated: 2015/02/12 14:45:16 by mbryan           ###   ########.fr       */
+/*   Updated: 2015/02/13 09:08:04 by mbryan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,15 @@ t_get	**realloc_me(t_get **map, int length)
 	if (length != 0)
 		cpy = map;
 	map = (t_get**) malloc((length + 2) * sizeof(t_get*));
+	if (map == NULL)
+		exit(EXIT_FAILURE);
 	while (i != length)
 	{
 		map[i] = cpy[i];
 		i++;
 	}
 	map[i + 1] = NULL;
-	if (length != 0)
+	if (length != 0 && cpy != NULL)
 		free(cpy);
 	return (map);
 }
@@ -75,6 +77,8 @@ t_e		takeline(int fd, t_e point)
 		ret = get_next_line(fd, &line);
 		check_for_gnl_error(ret);
 		point.map[y] = (t_get *)malloc(ft_strlen(line) * sizeof(t_get));
+		if (point.map[y] == NULL)
+			exit(EXIT_FAILURE);
 		check_for_other_error(line);
 		if (check_for_empty_line(line) != 0)
 		{
@@ -83,8 +87,7 @@ t_e		takeline(int fd, t_e point)
 		}
 		free(line);
 	}
-	point.y = y;
-	point = put_y(point);
+	point = put_y(point ,y);
 	return (point);
 }
 

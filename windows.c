@@ -6,7 +6,7 @@
 /*   By: mbryan <mbryan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/03 10:38:16 by mbryan            #+#    #+#             */
-/*   Updated: 2015/02/12 14:45:13 by mbryan           ###   ########.fr       */
+/*   Updated: 2015/02/13 09:08:10 by mbryan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,11 +96,10 @@ int		key_hook(int keycode, t_e *e)
 		i++;
 	}
 	if (keycode == 114)
-		{
-			*e = initiate(*e);
-			*e = zoom(*e, 0);
-			*e = zoom(*e,0);
-		}	
+	{
+		*e = initiate(*e);
+		*e = zoom(*e, 0);
+	}	
 	if (keycode == 117)	
 		*e = zoom(*e, e->zoom1 = e->zoom1 + 0.025);
 	if (keycode == 100)
