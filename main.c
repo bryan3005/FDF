@@ -6,7 +6,7 @@
 /*   By: mbryan <mbryan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/02 11:01:33 by mbryan            #+#    #+#             */
-/*   Updated: 2015/02/13 09:08:04 by mbryan           ###   ########.fr       */
+/*   Updated: 2015/02/13 10:03:21 by mbryan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 
 t_e		initiate(t_e point)
 {
-	point.zoom =  point.win_x / (point.x * 1.8); // taille de la fenetre divi par le nombre de points
+	point.zoom = point.win_x / (point.x * 1.8);
 	point.zoom1 = 0.045;
 	point.decalx = (point.win_x / 2) - point.x * 0.5 * point.zoom;
 	point.decaly = (point.win_y / 2) - point.y * 0.5 * point.zoom;
 	return (point);
 }
 
-t_e	put_in_tab(t_e point, char *str, int y)
+t_e		put_in_tab(t_e point, char *str, int y)
 {
 	int		x;
 	char	**line;
@@ -35,7 +35,8 @@ t_e	put_in_tab(t_e point, char *str, int y)
 	{
 		point.map[y][x].z = ft_atoi(line[x]);
 		point.map[y][x].y = y;
-		point.map[y][x].x = x * point.zoom + point.decalx - point.zoom1 * point.zoom * point.map[y][x].z;
+		point.map[y][x].x = x * point.zoom + point.decalx - point.zoom1 *
+		point.zoom * point.map[y][x].z;
 	}
 	ft_freetabs(line);
 	return (point);
@@ -44,12 +45,12 @@ t_e	put_in_tab(t_e point, char *str, int y)
 t_get	**realloc_me(t_get **map, int length)
 {
 	t_get	**cpy;
-	int 	i;
+	int		i;
 
 	i = 0;
 	if (length != 0)
 		cpy = map;
-	map = (t_get**) malloc((length + 2) * sizeof(t_get*));
+	map = (t_get**)malloc((length + 2) * sizeof(t_get*));
 	if (map == NULL)
 		exit(EXIT_FAILURE);
 	while (i != length)
@@ -67,7 +68,7 @@ t_e		takeline(int fd, t_e point)
 {
 	char	*line;
 	int		ret;
-	int 	y;
+	int		y;
 
 	ret = 1;
 	y = 0;
@@ -87,7 +88,7 @@ t_e		takeline(int fd, t_e point)
 		}
 		free(line);
 	}
-	point = put_y(point ,y);
+	point = put_y(point, y);
 	return (point);
 }
 

@@ -6,7 +6,7 @@
 /*   By: mbryan <mbryan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/02 10:59:30 by mbryan            #+#    #+#             */
-/*   Updated: 2015/02/13 09:07:42 by mbryan           ###   ########.fr       */
+/*   Updated: 2015/02/13 11:15:38 by mbryan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,11 @@
 # include <mlx.h>
 # include <math.h>
 
-
-typedef  struct  	s_get 
+typedef struct		s_get
 {
-	int 			x;
-	int 			y;
-	int 			z;
+	int				x;
+	int				y;
+	int				z;
 }					t_get;
 
 typedef	struct		s_e
@@ -36,7 +35,7 @@ typedef	struct		s_e
 	int				x;
 	int				y;
 	double			zoom;
-	double 			zoom1;
+	double			zoom1;
 	double			decalx;
 	double			decaly;
 	int				win_x;
@@ -47,12 +46,12 @@ typedef	struct		s_e
 void				put_point(double x, double y, t_e point);
 void				window(t_e	point);
 int					key_hook(int keycode, t_e *e);
-t_e					check_primary_error(int argc, char **argv, int *fd, t_e point);
+t_e					check_primary_error(int ac, char **av, int *fd, t_e point);
 t_e					takeline(int fd, t_e point);
 void				make_point(t_e point);
 t_e					put_in_tab(t_e point, char *str, int y);
 int					check_for_empty_line(char *str);
-int 				check_for_bad_caracter(char *line);
+int					check_for_bad_caracter(char *line);
 void				coeff_dir(t_e e);
 t_e					initiate(t_e point);
 void				draw_x(t_get p1, t_get p2, t_e e);
@@ -61,5 +60,9 @@ void				check_for_bad_length(int x);
 void				check_for_other_error(char *line);
 t_e					put_y(t_e point, int y);
 void				check_for_gnl_error(int ret);
+void				keycode1(int keycode, t_e *e);
+t_e					zoom(t_e e);
+int					key_hook(int key, t_e *e);
+void				draw(t_e e);
 
 #endif
