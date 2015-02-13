@@ -6,7 +6,7 @@
 /*   By: mbryan <mbryan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/12 14:27:11 by mbryan            #+#    #+#             */
-/*   Updated: 2015/02/13 10:35:16 by mbryan           ###   ########.fr       */
+/*   Updated: 2015/02/13 13:10:21 by mbryan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,81 +30,65 @@ t_e		put_y(t_e point, int y)
 	return (point);
 }
 
-void	check_for_gnl_error(int ret)
+void	color_me(t_e e, int x, int y, int z)
 {
-	if (ret == -1)
-	{
-		ft_putendl("Error : get_next_line");
-		exit(EXIT_FAILURE);
-	}
-}
-
-t_get	color_me(double ret, t_get p1, t_get p2, t_e e)
-{
-	if (p1.z > 0 || p2.z > 0)
-		mlx_pixel_put(e.mlx, e.win, ret, p1.y, 0xff0000);
-	else if (p1.z == 0 || p2.z == 0)
-		mlx_pixel_put(e.mlx, e.win, ret, p1.y, 0xffffff);
+	if (z > 0)
+		mlx_pixel_put(e.mlx, e.win, x, y, 0xff0000);
+	else if (z == 0)
+		mlx_pixel_put(e.mlx, e.win, x, y, 0xffffff);
 	else
-		mlx_pixel_put(e.mlx, e.win, ret, p1.y, 0x4595FF);
-	p1.y++;
-	return (p1);
+		mlx_pixel_put(e.mlx, e.win, x, y, 0x4595FF);
 }
 
-void	draw_y(t_get p1, t_get p2, t_e e)
+void	draw_y(t_get p1, t_get p2, t_e e, double a)
 {
-	double	a;
 	double	b;
-	double	dx;
-	double	dy;
 	double	ret;
 
-	dx = p2.x - p1.x;
-	dy = p2.y - p1.y;
-	ret = 0;
-	if (dx != 0)
-		a = dy / dx;
-	else
-		a = 0;
 	b = p1.y - a * p1.x;
-	while (p1.y < p2.y)
+	while (p1.y != p2.y)
 	{
-		if (dx != 0)
+		if (p2.x - p1.x != 0)
 		{
-			dy = p1.y - b;
-			ret = dy / a;
+			ret = p1.y - b;
+			ret /= a;
 		}
 		else
 			ret = p1.x;
-		p1 = color_me(ret, p1, p2, e);
+		p1.z = (p1.z > p2.z) ? p1.z : p2.z;
+		color_me(e, ret, p1.y, p1.z);
+		(p1.y > p2.y) ? p1.y-- : p1.y++;
 	}
 }
 
-void	draw_x(t_get p1, t_get p2, t_e e)
+void	draw_x(t_get p1, t_get p2, t_e e, double a)
 {
-	double	a;
 	double	b;
-	double	dx;
-	double	dy;
 	double	ret;
 
 	ret = 0;
+	b = p1.y - a * p1.x;
+	while (p1.x != p2.x)
+	{
+		ret = a * p1.x + b;
+		p1.z = (p1.z > p2.z) ? p1.z : p2.z;
+		color_me(e, p1.x, ret, p1.z);
+		(p1.x > p2.x) ? p1.x-- : p1.x++;
+	}
+}
+
+void	draw_line(t_e e, t_get p1, t_get p2)
+{
+	double	a;
+	double	dx;
+	double	dy;
+
 	dx = p2.x - p1.x;
 	dy = p2.y - p1.y;
 	if (dx != 0)
 		a = dy / dx;
 	else
 		a = 0;
-	b = p1.y - a * p1.x;
-	while (p1.x < p2.x)
-	{
-		ret = a * p1.x + b;
-		if ((p1.z > 0 || p2.z > 0))
-			mlx_pixel_put(e.mlx, e.win, p1.x, ret, 0xff0000);
-		else if (p1.z == 0 || p2.z == 0)
-			mlx_pixel_put(e.mlx, e.win, p1.x, ret, 0xffffff);
-		else
-			mlx_pixel_put(e.mlx, e.win, p1.x, ret, 0x4595FF);
-		p1.x++;
-	}
+	draw_y(p1, p2, e, a);
+	draw_x(p1, p2, e, a);
 }

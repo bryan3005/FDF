@@ -6,7 +6,7 @@
 /*   By: mbryan <mbryan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/03 10:38:16 by mbryan            #+#    #+#             */
-/*   Updated: 2015/02/13 11:15:00 by mbryan           ###   ########.fr       */
+/*   Updated: 2015/02/13 13:10:20 by mbryan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,10 @@ void	draw(t_e e)
 		x = -1;
 		while (++x != e.x)
 		{
-			if (x != e.x - 1 && e.map[y][x].x <= e.win_x &&
-			e.map[y][x].y <= e.win_y)
-				draw_x(e.map[y][x], e.map[y][x + 1], e);
-			if (y != e.y - 1 && e.map[y][x].x <= e.win_x &&
-				e.map[y][x].y <= e.win_y)
-				draw_y(e.map[y][x], e.map[y + 1][x], e);
+			if (x != e.x - 1 && (is_in_map(e, x, y) || is_in_map(e, x + 1, y)))
+				draw_line(e, e.map[y][x], e.map[y][x + 1]);
+			if (y != e.y - 1 && (is_in_map(e, x, y) || is_in_map(e, x, y + 1)))
+				draw_line(e, e.map[y][x], e.map[y + 1][x]);
 		}
 		y++;
 	}

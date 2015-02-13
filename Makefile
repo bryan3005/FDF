@@ -6,7 +6,7 @@
 #    By: mbryan <mbryan@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/02/02 11:03:59 by mbryan            #+#    #+#              #
-#    Updated: 2015/02/13 11:43:47 by mbryan           ###   ########.fr        #
+#    Updated: 2015/02/13 13:10:24 by mbryan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ all : $(NAME)
 $(NAME) : $(OBJ) libft/libft.a
 			gcc $(FLAGS) -I $(PATH_INCLUDES) -o $(NAME) $(OBJ) libft/libft.a $(LIB)
 
-$(OBJ): %.o: ./srcs/%.c $(INCLUDES)
+$(OBJ): %.o: srcs/%.c $(INCLUDES)
 			gcc $(FLAGS) -I $(PATH_INCLUDES) -c $< -o $@ 
 
 libft/libft.a :

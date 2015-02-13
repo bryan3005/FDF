@@ -6,7 +6,7 @@
 /*   By: mbryan <mbryan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/13 10:34:19 by mbryan            #+#    #+#             */
-/*   Updated: 2015/02/13 11:15:04 by mbryan           ###   ########.fr       */
+/*   Updated: 2015/02/13 13:10:22 by mbryan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,15 @@ void	check_for_bad_length(int x)
 	if (nbcount != x)
 	{
 		ft_putendl("bad length");
+		exit(EXIT_FAILURE);
+	}
+}
+
+void	check_for_gnl_error(int ret)
+{
+	if (ret == -1)
+	{
+		ft_putendl("Error : get_next_line");
 		exit(EXIT_FAILURE);
 	}
 }
@@ -84,4 +93,13 @@ int		key_hook(int key, t_e *e)
 		draw(*e);
 	}
 	return (0);
+}
+
+int		is_in_map(t_e e, int x, int y)
+{
+	if (e.map[y][x].x > e.win_x || e.map[y][x].x < 0)
+		return (0);
+	if (e.map[y][x].y > e.win_y || e.map[y][x].y < 0)
+		return (0);
+	return (1);
 }

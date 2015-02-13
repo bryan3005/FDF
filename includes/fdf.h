@@ -6,7 +6,7 @@
 /*   By: mbryan <mbryan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/02 10:59:30 by mbryan            #+#    #+#             */
-/*   Updated: 2015/02/13 11:15:38 by mbryan           ###   ########.fr       */
+/*   Updated: 2015/02/13 13:10:24 by mbryan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,6 @@ int					check_for_empty_line(char *str);
 int					check_for_bad_caracter(char *line);
 void				coeff_dir(t_e e);
 t_e					initiate(t_e point);
-void				draw_x(t_get p1, t_get p2, t_e e);
-void				draw_y(t_get p1, t_get p2, t_e e);
 void				check_for_bad_length(int x);
 void				check_for_other_error(char *line);
 t_e					put_y(t_e point, int y);
@@ -64,5 +62,7 @@ void				keycode1(int keycode, t_e *e);
 t_e					zoom(t_e e);
 int					key_hook(int key, t_e *e);
 void				draw(t_e e);
+void				draw_line(t_e e, t_get p1, t_get p2);
+int					is_in_map(t_e e, int x, int y);
 
 #endif
