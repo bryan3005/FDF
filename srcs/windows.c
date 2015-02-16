@@ -6,7 +6,7 @@
 /*   By: mbryan <mbryan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/03 10:38:16 by mbryan            #+#    #+#             */
-/*   Updated: 2015/02/13 13:10:20 by mbryan           ###   ########.fr       */
+/*   Updated: 2015/02/15 23:56:07 by mbryan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,24 +40,26 @@ int		expose_hook(t_e *e)
 
 void	zoom_2(t_e *e, int x, int y)
 {
-	if (e->proj == 0)
-	{
-		e->map[y][x].y = y * e->zoom + e->decaly - e->zoom1 *
-		e->zoom * e->map[y][x].z;
-		e->map[y][x].x = x * e->zoom + e->decalx - e->zoom1 *
-		e->zoom * e->map[y][x].z;
-	}
-	else if (e->proj == 1)
-	{
-		e->map[y][x].y = ((x * e->zoom + e->decalx - e->zoom1 *
-		e->zoom * e->map[y][x].z) * 0.5) +
-		((y * e->zoom + e->decaly - e->zoom1 *
-		e->zoom * e->map[y][x].z) * 0.87) - e->win_y / 5;
-		e->map[y][x].x = ((x * e->zoom + e->decalx - e->zoom1 *
-		e->zoom * e->map[y][x].z) * 0.87) -
-		((y * e->zoom + e->decaly - e->zoom1 *
-		e->zoom * e->map[y][x].z) * 0.5) + e->win_x / 4;
-	}
+	e->angle1 = (sin(e->decala * M_PI / 180));
+	e->angle2 = (cos(e->decala * M_PI / 180));
+	// if (e->proj == 0)
+	// {
+	// 	e->map[y][x].y = y * e->zoom + e->decaly - e->zoom1 *
+	// 	e->zoom * e->map[y][x].z;
+	// 	e->map[y][x].x = x * e->zoom + e->decalx - e->zoom1 *
+	// 	e->zoom * e->map[y][x].z;
+	// }
+	// else if (e->proj == 1)
+	// {
+		e->map[y][x].y = ((x * e->zoom - e->zoom1 *
+		e->zoom * e->map[y][x].z) * e->angle1) + e->decaly +
+		((y * e->zoom - e->zoom1 *
+		e->zoom * e->map[y][x].z) * e->angle2) ;
+		e->map[y][x].x = ((x * e->zoom  - e->zoom1 *
+		e->zoom * e->map[y][x].z) * e->angle2) + e->decalx -
+		((y * e->zoom  - e->zoom1 *
+		e->zoom * e->map[y][x].z) * e->angle1);
+	// }
 }
 
 t_e		zoom(t_e e)

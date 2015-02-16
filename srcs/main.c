@@ -6,7 +6,7 @@
 /*   By: mbryan <mbryan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/02 11:01:33 by mbryan            #+#    #+#             */
-/*   Updated: 2015/02/13 10:03:21 by mbryan           ###   ########.fr       */
+/*   Updated: 2015/02/13 20:12:44 by mbryan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,13 @@
 
 t_e		initiate(t_e point)
 {
+	point.decala = 0;
 	point.zoom = point.win_x / (point.x * 1.8);
 	point.zoom1 = 0.045;
 	point.decalx = (point.win_x / 2) - point.x * 0.5 * point.zoom;
 	point.decaly = (point.win_y / 2) - point.y * 0.5 * point.zoom;
+	point.angle1 = (sin(point.decala * M_PI / 180));
+	point.angle2 = (cos(point.decala * M_PI / 180));
 	return (point);
 }
 

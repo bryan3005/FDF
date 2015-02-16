@@ -6,7 +6,7 @@
 /*   By: mbryan <mbryan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/02 10:59:30 by mbryan            #+#    #+#             */
-/*   Updated: 2015/02/13 13:10:24 by mbryan           ###   ########.fr       */
+/*   Updated: 2015/02/15 23:56:58 by mbryan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,11 @@ typedef	struct		s_e
 	double			zoom1;
 	double			decalx;
 	double			decaly;
+	double			angle1;
+	double			angle2;
+	int				decala;
 	int				win_x;
 	int				win_y;
-	int				proj;
 }					t_e;
 
 void				put_point(double x, double y, t_e point);
