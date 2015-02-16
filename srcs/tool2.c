@@ -6,7 +6,7 @@
 /*   By: mbryan <mbryan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/12 14:27:11 by mbryan            #+#    #+#             */
-/*   Updated: 2015/02/13 13:10:21 by mbryan           ###   ########.fr       */
+/*   Updated: 2015/02/16 13:33:40 by mbryan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	color_me(t_e e, int x, int y, int z)
 	else if (z == 0)
 		mlx_pixel_put(e.mlx, e.win, x, y, 0xffffff);
 	else
-		mlx_pixel_put(e.mlx, e.win, x, y, 0x4595FF);
+		mlx_pixel_put(e.mlx, e.win, x, y, 0x003366);
 }
 
 void	draw_y(t_get p1, t_get p2, t_e e, double a)
