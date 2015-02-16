@@ -6,7 +6,7 @@
 /*   By: mbryan <mbryan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/02 11:01:33 by mbryan            #+#    #+#             */
-/*   Updated: 2015/02/13 20:12:44 by mbryan           ###   ########.fr       */
+/*   Updated: 2015/02/16 12:33:49 by mbryan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,13 +98,10 @@ t_e		takeline(int fd, t_e point)
 int		main(int argc, char **argv)
 {
 	int		fd;
-	t_get	**map;
 	t_e		point;
 
 	point = check_primary_error(argc, argv, &fd, point);
 	point = takeline(fd, point);
 	window(point);
-	ft_putendl("hr");
-	(void)map;
 	return (0);
 }

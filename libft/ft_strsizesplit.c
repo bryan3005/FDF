@@ -6,7 +6,7 @@
 /*   By: mbryan <mbryan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/20 14:52:27 by mbryan            #+#    #+#             */
-/*   Updated: 2015/01/24 18:59:36 by mbryan           ###   ########.fr       */
+/*   Updated: 2015/02/16 12:36:53 by mbryan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ char			**ft_strsizesplit(char const *s, char c, int *size)
 	if (s == NULL)
 		return (NULL);
 	i = 0;
+	map = NULL;
 	nb_words = 0;
 	while (s[i] && s[i] == c)
 		i++;

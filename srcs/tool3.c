@@ -6,7 +6,7 @@
 /*   By: mbryan <mbryan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/13 10:34:19 by mbryan            #+#    #+#             */
-/*   Updated: 2015/02/15 23:57:32 by mbryan           ###   ########.fr       */
+/*   Updated: 2015/02/16 12:22:31 by mbryan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,13 @@ void	keycode1(int keycode, t_e *e)
 	if (keycode == 117)
 		e->zoom1 = e->zoom1 + 0.025;
 	if (keycode == 112)
-	 	e->decala += 5;
+		e->decala += 5;
 	if (keycode == 105)
-	 	e->decala -= 5;
+		e->decala -= 5;
 }
 
 int		key_hook(int key, t_e *e)
 {
-	printf("%d\n",key );
 	keycode1(key, e);
 	if (key == 100)
 		e->zoom1 = e->zoom1 - 0.025;
@@ -75,7 +74,7 @@ int		key_hook(int key, t_e *e)
 		e->decalx = e->decalx + 10;
 	if (key == 117 || key == 100 || key == 65451 || key == 61 ||
 		key == 65453 || key == 45 || key == 65362 || key == 65364 ||
-		key == 65361 || key == 65363 || key == 114 || 
+		key == 65361 || key == 65363 || key == 114 ||
 		key == 112 || key == 105)
 	{
 		*e = zoom(*e);

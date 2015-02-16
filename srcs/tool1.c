@@ -6,7 +6,7 @@
 /*   By: mbryan <mbryan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/06 10:41:59 by mbryan            #+#    #+#             */
-/*   Updated: 2015/02/13 10:07:00 by mbryan           ###   ########.fr       */
+/*   Updated: 2015/02/16 12:36:31 by mbryan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,7 @@ int		check_for_bad_caracter(char *line)
 	ret = 0;
 	while (line[i])
 	{
-		if (ft_isdigit(line[i]) == 0 && line[i] != ' ' &&
-		line[i] != '	' && line[i] != '-')
+		if (ft_isdigit(line[i]) == 0 && line[i] != ' ' && line[i] != '-')
 			ret++;
 		i++;
 	}
