@@ -6,12 +6,11 @@
 /*   By: mbryan <mbryan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/02 11:01:33 by mbryan            #+#    #+#             */
-/*   Updated: 2015/02/16 12:33:49 by mbryan           ###   ########.fr       */
+/*   Updated: 2015/02/17 15:49:13 by mbryan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include <stdio.h>
 
 t_e		initiate(t_e point)
 {
