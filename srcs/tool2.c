@@ -6,7 +6,7 @@
 /*   By: mbryan <mbryan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/12 14:27:11 by mbryan            #+#    #+#             */
-/*   Updated: 2015/02/19 13:57:07 by mbryan           ###   ########.fr       */
+/*   Updated: 2015/02/19 16:01:29 by mbryan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ t_e		put_y(t_e point, int y)
 
 	point.y = y;
 	i = point.y;
-	point.valide = 1;
 	point = initiate(point);
 	while (i-- != 0)
 	{
