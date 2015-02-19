@@ -6,12 +6,11 @@
 /*   By: mbryan <mbryan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/06 10:41:59 by mbryan            #+#    #+#             */
-/*   Updated: 2015/02/16 12:36:31 by mbryan           ###   ########.fr       */
+/*   Updated: 2015/02/19 13:42:14 by mbryan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include <stdlib.h>
 
 t_e		init_window(char **argv, t_e point, int *fd)
 {
@@ -52,25 +51,6 @@ t_e		check_primary_error(int argc, char **argv, int *fd, t_e point)
 		exit(EXIT_FAILURE);
 	}
 	return (point);
-}
-
-int		check_for_empty_line(char *str)
-{
-	int i;
-	int ret;
-
-	i = 0;
-	ret = 0;
-	while (str[i])
-	{
-		while (str[i] && ft_isdigit(str[i]) != 0)
-			i++;
-		if (str[i] && ft_isdigit(str[i]) == 0)
-			ret++;
-		while (str[i] && ft_isdigit(str[i]) == 0)
-			i++;
-	}
-	return (ret);
 }
 
 int		check_for_bad_caracter(char *line)

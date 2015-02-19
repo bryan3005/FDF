@@ -6,7 +6,7 @@
 /*   By: mbryan <mbryan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/13 10:34:19 by mbryan            #+#    #+#             */
-/*   Updated: 2015/02/16 12:22:31 by mbryan           ###   ########.fr       */
+/*   Updated: 2015/02/19 13:35:51 by mbryan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	check_for_bad_length(int x)
 		nbcount = x;
 		stat++;
 	}
-	if (nbcount != x)
+	if (nbcount != x && nbcount != 0)
 	{
 		ft_putendl("bad length");
 		exit(EXIT_FAILURE);
