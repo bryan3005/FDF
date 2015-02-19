@@ -6,7 +6,7 @@
 /*   By: mbryan <mbryan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/02 11:01:33 by mbryan            #+#    #+#             */
-/*   Updated: 2015/02/19 16:43:39 by mbryan           ###   ########.fr       */
+/*   Updated: 2015/02/19 17:28:53 by mbryan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,19 @@ t_e		initiate(t_e point)
 {
 	point.decala = 0;
 	if (point.y >= point.x && point.y != -1)
-		point.zoom = point.win_y / (point.y * 1.8);
+	{
+		if (point.win_y >= point.win_x)
+			point.zoom = point.win_x / (point.y * 1.8);
+		else
+			point.zoom = point.win_y / (point.y * 1.8);
+	}
 	else
-		point.zoom = point.win_x / (point.x * 1.8);
+	{
+		if (point.win_y >= point.win_x)
+			point.zoom = point.win_x / (point.x * 1.8);
+		else
+			point.zoom = point.win_y / (point.x * 1.8);
+	}
 	point.zoom1 = 0.045;
 	point.decalx = (point.win_x / 2) - point.x * 0.5 * point.zoom;
 	point.decaly = (point.win_y / 2) - point.y * 0.5 * point.zoom;
