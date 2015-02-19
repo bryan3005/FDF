@@ -6,12 +6,12 @@
 /*   By: mbryan <mbryan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/13 10:34:19 by mbryan            #+#    #+#             */
-/*   Updated: 2015/02/19 16:07:55 by mbryan           ###   ########.fr       */
+/*   Updated: 2015/02/19 17:01:20 by mbryan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
+#include <stdio.h>
 void	check_for_bad_length(int x)
 {
 	static int		nbcount = 0;
@@ -60,9 +60,9 @@ int		key_hook(int key, t_e *e)
 	keycode1(key, e);
 	if (key == 100)
 		e->zoom1 = e->zoom1 - 0.025;
-	if ((key == 65451 || key == 61))
+	if ((key == 65451 || key == 61) && e->zoom < 50000)
 		e->zoom = e->zoom + e->zoom / 5;
-	if ((key == 65453 || key == 45) && e->zoom > 0.5)
+	if ((key == 65453 || key == 45) && e->zoom > 0.1)
 		e->zoom = e->zoom - e->zoom / 5;
 	if (key == 65362)
 		e->decaly = e->decaly - 10;

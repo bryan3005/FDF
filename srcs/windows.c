@@ -6,12 +6,12 @@
 /*   By: mbryan <mbryan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/03 10:38:16 by mbryan            #+#    #+#             */
-/*   Updated: 2015/02/19 13:41:08 by mbryan           ###   ########.fr       */
+/*   Updated: 2015/02/19 16:43:37 by mbryan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
+#include <stdio.h>
 void	draw(t_e e)
 {
 	int y;

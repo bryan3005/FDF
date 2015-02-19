@@ -6,7 +6,7 @@
 /*   By: mbryan <mbryan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/12 14:27:11 by mbryan            #+#    #+#             */
-/*   Updated: 2015/02/19 16:01:29 by mbryan           ###   ########.fr       */
+/*   Updated: 2015/02/19 16:53:51 by mbryan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,11 @@ t_e		put_y(t_e point, int y)
 		while (j-- != 0)
 			point.map[i][j].y = point.map[i][j].y * point.zoom + point.decaly -
 			point.zoom1 * point.zoom * point.map[i][j].z;
+	}
+	if (point.x == 1 && point.y == 1)
+	{
+		ft_putendl("Map error : at least two points needed");
+		exit(EXIT_FAILURE);
 	}
 	zoom(point);
 	return (point);
